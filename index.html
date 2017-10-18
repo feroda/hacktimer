@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 
-<title>Hackreativity - Fabriano, 29-30 ottobre 2016</title>
+<title>ITS - Fabriano, 18 ottobre 2017</title>
 
-<meta name="description" content="Hackreativity, un hackathon per abilitare il territorio con la data economy">
+<meta name="description" content="Sistemi di gestione, telecontrollo e domotica industriale">
 <meta name="author" content="Luca Ferroni">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,7 +29,7 @@
 <!--[if lt IE 9]>
 <script src="lib/js/html5shiv.js"></script>
 <![endif]-->
-</head><body><div class="barra"><div class="titolo">Hackreativity, Fabriano 29,30 ottobre 2016 </div><!--.logo.logo-sbw--></div><div class="barra bottom"><div class="titolo">Luca Ferroni - Digital Champion di Fabriano @ferodafabriano</div><div class="hashtag">#hackreativity</div></div><div class="reveal"><!-- Any section element inside of this container is displayed as a slide--><div class="slides"><!--section //(data-background-video="video/PlexusTest.mp4")--><section data-background="imgs/HACKREATivity_COPERTINA-EVENTO-FACEBOOK.jpg"><div class="background-opaque"><h2 id="datenow"></h2><span>&nbsp;</span><h1 id="countdown"> </h1><span>&nbsp;</span><h2 id="dateend"></h2></div><!--img(data-src="./imgs/HACKREATivity_COPERTINA-EVENTO-FACEBOOK.jpg")--></section></div></div><script src="lib/js/head.min.js"></script>
+</head><body><div class="barra"><div class="titolo">ITS - Sistemi di gestione, telecontrollo e domotica industriale</div></div><div class="barra bottom"><div class="titolo">Luca Ferroni - Docente ITS @ferodafabriano</div><!-- .hashtag #hackreativity--></div><div class="reveal"><!-- Any section element inside of this container is displayed as a slide--><div class="slides"><section data-background-video="video/PlexusTest.mp4"><div class="background-opaque"><h1>NETWORKING</h1><h1>da ZERO a IP</h1><h3>solo quello che serve</h3></div></section><section><section><h1>Rispondere ai quesiti (1/2)</h1><ul><li>come può un segnale partire da uno smartphone e arrivare ad una caldaia?</li><li>perchè è così importante conoscere le basi del protocollo IP?</li><li>come affronta IP la problematica dell'indirizzamento?</li><li>quali sono i 4 parametri fondamentali da verificare in caso di malfunzionamento connessione ad Internet?</li></ul></section><section><h1>Rispondere ai quesiti (2/2)</h1><ul><li>come possono i dispositivi in casa/azienda/fabbrica raggiungersi tra loro?</li><li>come possono gli stessi dispositivi connettersi/essere raggiunti attraverso Internet?</li><li>come posso rendere raggiungibile la mia caldaia/il mio Inverter da Internet? è opportuno farlo?</li><li>quali sistemi sono presenti in un sistema di automazione e telecontrollo?</li></ul></section></section><section><h1>CAPIRE cosa fanno i 4 parametri fondamentali:</h1><ul><li class="fragment">Indirizzo IP</li><li class="fragment">Netmask (= maschera di rete)</li><li class="fragment">Default gateway</li><li class="fragment">DNS</li></ul></section><section data-background-transition="zoom" data-background-image="imgs/scada-arch.png"></section><section><h1>Internet Protocol</h1><h3>Si occupa di instradare i messaggi sulla rete</h3><h4>per raggiungere ogni dispositivo </h4><h4>che prende il nome di host</h4><h2 class="fragment">...ecco perché è importante IP!</h2></section><section><h1>Indirizzamento</h1><ul><li>Indirizzo IP</li><li>Netmask (= maschera di rete)</li></ul></section><section><h1>INDIRIZZO IP</h1><ul><li>32 bit usualmente rappresentati con 4 numeri decimali </li><li>da 0 a 255 separati da "."</li><li class="fragment">serve a dare un indirizzo univoco all'host nella propria rete</li><li>esempio: 192.168.10.32</li></ul></section><section><h1>NETMASK</h1><ul><li>32 bit di cui n bit contigui ad 1</li><li>rappresentabili facilmente con /n dopo l'indirizzo IP (notazione CIDR)</li><li class="fragment">serve per identificare gli host raggiungibili direttamente e indirettamente</li><li>esempio: /24 nella notazione 192.168.10.32/24. Oppure: 255.255.255.0</li></ul></section><section class="fullcover" data-background-transition="zoom" data-transition="convex" data-background="imgs/1-rete-con-switch.png"><div class="background-opaque"><h2>Usiamo questi 32 + 32 bit alla lavagna...</h2></div></section><section><h1>Dalla combinazione di IP + NETMASK</h1><ul><li>si identificano NET-ID e HOST-ID</li><li class="fragment">l'host sa l'indirizzo della rete di appartenenza</li><li class="fragment">l'host sa l'indirizzo di broadcast</li><li class="fragment">l'host sa chi contattare direttamente e chi indirettamente</li></ul></section><section><h1>Dalla rete dell'host a reti esterne</h1></section><section data-transition="convex"><h1>il GATEWAY</h1><ul><li>ha la forma di un indirizzo IP</li><li>identifica un apparato che può instradare il pacchetto su altre reti</li><li>tale apparato è un router</li></ul></section><section class="fullcover" data-transition="convex" data-background-image="imgs/apparato-casalingo.png"><div class="background-opaque"><h2>Il vostro router di casa fa troppe cose!</h2></div></section><section class="fullcover" data-transition="convex" data-background-image="imgs/2-reti-connesse-da-un-router.png"><div class="background-opaque"><h2>Il compito di un router è di instradare pacchetti su più reti</h2></div></section></div></div><script src="lib/js/head.min.js"></script>
 <script src="js/reveal.js"></script><script>// More info https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
     controls: true,
@@ -48,22 +48,4 @@ Reveal.initialize({
         { src: 'plugin/zoom-js/zoom.js', async: true },
         { src: 'plugin/notes/notes.js', async: true }
     ]
-});
-
-var d = (new Date);
-var now = Date.now();
-d.setHours(11);
-d.setMinutes(0);
-d.setSeconds(0);
-d.setDate(30);
-var i = 0;
-function updateTimer() {
-    document.getElementById('datenow').innerHTML = (new Date).toString().substr(0,33);
-    document.getElementById('countdown').innerHTML = parseInt((d.getTime()-Date.now())/100);
-};
-
-Reveal.addEventListener( 'ready', function( event ) {
-    document.getElementById('dateend').innerHTML = d.toString().substr(0,33);
-    setInterval(updateTimer, 300);
-});
-</script></body><body></body></html><html></html>
+});</script></body></html><html></html>

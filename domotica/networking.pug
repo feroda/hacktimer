@@ -1,0 +1,99 @@
+section(data-background-video="video/PlexusTest.mp4")
+
+    div.background-opaque
+        h1 NETWORKING
+        h1 da ZERO a IP
+        h3 solo quello che serve
+
+section
+
+    section
+        h1 Rispondere ai quesiti (1/2)
+        ul
+            li come può un segnale partire da uno smartphone e arrivare ad una caldaia?
+            li perchè è così importante conoscere le basi del protocollo IP?
+            li come affronta IP la problematica dell'indirizzamento?
+            li quali sono i 4 parametri fondamentali da verificare in caso di malfunzionamento connessione ad Internet?
+
+    section
+        h1 Rispondere ai quesiti (2/2)
+        ul
+            li come possono i dispositivi in casa/azienda/fabbrica raggiungersi tra loro?
+            li come possono gli stessi dispositivi connettersi/essere raggiunti attraverso Internet?
+            li come posso rendere raggiungibile la mia caldaia/il mio Inverter da Internet? è opportuno farlo?
+            li quali sistemi sono presenti in un sistema di automazione e telecontrollo?
+
+section
+
+    h1 CAPIRE cosa fanno i 4 parametri fondamentali:
+    ul
+        li.fragment Indirizzo IP
+        li.fragment Netmask (= maschera di rete)
+        li.fragment Default gateway
+        li.fragment DNS
+
+section(data-background-transition="zoom",data-background-image="imgs/scada-arch.png")
+
+section
+
+   h1 Internet Protocol
+   h3 Si occupa di instradare i messaggi sulla rete
+   h4 per raggiungere ogni dispositivo 
+   h4 che prende il nome di host
+   h2.fragment ...ecco perché è importante IP!
+
+section
+
+    h1 Indirizzamento
+    ul
+        li Indirizzo IP
+        li Netmask (= maschera di rete)
+
+section
+
+    h1 INDIRIZZO IP
+    ul
+        li 32 bit usualmente rappresentati con 4 numeri decimali 
+        li da 0 a 255 separati da "."
+        li.fragment serve a dare un indirizzo univoco all'host nella propria rete
+        li esempio: 192.168.10.32
+
+section
+    h1 NETMASK
+    ul
+        li 32 bit di cui n bit contigui ad 1
+        li rappresentabili facilmente con /n dopo l'indirizzo IP (notazione CIDR)
+        li.fragment serve per identificare gli host raggiungibili direttamente e indirettamente
+        li esempio: /24 nella notazione 192.168.10.32/24. Oppure: 255.255.255.0
+
+section(data-background-transition="zoom",data-transition="convex",data-background="imgs/1-rete-con-switch.png").fullcover
+    div.background-opaque
+        h2 Usiamo questi 32 + 32 bit alla lavagna...
+
+section
+    h1 Dalla combinazione di IP + NETMASK
+    ul
+        li si identificano NET-ID e HOST-ID
+        li.fragment l'host sa l'indirizzo della rete di appartenenza
+        li.fragment l'host sa l'indirizzo di broadcast
+        li.fragment l'host sa chi contattare direttamente e chi indirettamente
+
+section
+    h1 Dalla rete dell'host a reti esterne
+
+section(data-transition="convex")
+    h1 il GATEWAY
+    ul
+        li ha la forma di un indirizzo IP
+        li identifica un apparato che può instradare il pacchetto su altre reti
+        li tale apparato è un router
+
+section(data-transition="convex",data-background-image="imgs/apparato-casalingo.png").fullcover
+
+    div.background-opaque
+        h2 Il vostro router di casa fa troppe cose!
+
+section(data-transition="convex",data-background-image="imgs/2-reti-connesse-da-un-router.png").fullcover
+
+    div.background-opaque
+        h2 Il compito di un router è di instradare pacchetti su più reti
