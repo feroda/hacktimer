@@ -29,7 +29,7 @@ section
     h1 CAPIRE cosa fanno i 4 parametri fondamentali:
     ul
         li.fragment Indirizzo IP
-        li.fragment Netmask (= maschera di rete)
+        li.fragment Netmask
         li.fragment Default gateway
         li.fragment DNS
 
@@ -52,20 +52,22 @@ section
 
 section
 
-    h1 INDIRIZZO IP
+    h1 INDIRIZZO IP 
+    h2 (abbr. IP)
     ul
-        li 32 bit usualmente rappresentati con 4 numeri decimali 
-        li da 0 a 255 separati da "."
-        li.fragment serve a dare un indirizzo univoco all'host nella propria rete
+        li 32 bit 
+        li usualmente rappresentati con 4 numeri decimali (= "ottetti") da 0 a 255 separati da "."
         li esempio: 192.168.10.32
+        li.fragment serve a dare un indirizzo univoco all'host nella propria rete
 
 section
-    h1 NETMASK
+    h1 NETMASK 
+    h2 (abbr. NM)
     ul
         li 32 bit di cui n bit contigui ad 1
         li rappresentabili facilmente con /n dopo l'indirizzo IP (notazione CIDR)
-        li.fragment serve per identificare gli host raggiungibili direttamente e indirettamente
         li esempio: /24 nella notazione 192.168.10.32/24. Oppure: 255.255.255.0
+        li.fragment serve per identificare gli host raggiungibili direttamente e indirettamente
 
 section(data-background-transition="zoom",data-transition="convex",data-background="imgs/1-rete-con-switch.png").fullcover
     div.background-opaque
@@ -80,21 +82,208 @@ section
         li.fragment l'host sa chi contattare direttamente e chi indirettamente
 
 section
-    h1 Dalla rete dell'host a reti esterne
+
+    section 
+        h1 Come trovare i limiti della rete? 
+        ul
+            li l'indirizzo di rete
+            ul 
+                li AND bit a bit tra IP e NETMASK
+            li l'indirizzo di broadcast 
+            ul 
+                li OR bit a bit tra IP e NOT della NETMASK
+        p.fragment NOTA: li posso usare tutti tranne quello di broadcast. Di solito non si usa lo 0
+
+    section
+        h1 metodo semplificato 
+        h2 valido per NM /8, /16 e /24
+        p si consideri l'IP rappresentato in 4 ottetti OT1.OT2.OT3.OT4
+        ul
+            li l'indirizzo di rete
+            ul
+                li metto 0 dove la NM è 0, e OTn dove la NM è 255
+            li l'indirizzo di broadcast 
+            ul
+                li metto OTn dove la NM è 255 e metto 255 dove la NM è 0
+
+section
+    h1 esempi con NM /24
+    <table>
+        <thead>
+        <tr><th>IP/NM</th><th>RETE (lim. inf.)</th><th>BROADCAST (lim. sup.)</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>192.168.1.10/24</td><td>192.168.1.0</td><td>192.168.1.255</td></tr>
+        <tr><td>192.168.1.132/24</td><td>192.168.1.0</td><td>192.168.1.255</td></tr>
+        <tr><td>192.168.42.30/24</td><td>192.168.42.0</td><td>192.168.42.255</td></tr>
+        <tr><td>192.20.1.30/24</td><td>192.20.1.0</td><td>192.20.1.255</td></tr>
+        </tbody>
+    </table>
+
+section
+    h1 esempi con NM /16
+    <table>
+        <thead>
+        <tr><th>IP/NM</th><th>RETE (lim. inf.)</th><th>BROADCAST (lim. sup.)</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>192.168.1.10/16</td><td>192.168.0.0</td><td>192.168.255.255</td></tr>
+        <tr><td>192.168.1.132/16</td><td>192.168.0.0</td><td>192.168.255.255</td></tr>
+        <tr><td>192.168.42.30/16</td><td>192.168.0.0</td><td>192.168.255.255</td></tr>
+        <tr><td>192.20.1.30/16</td><td>192.20.0.0</td><td>192.20.255.255</td></tr>
+        </tbody>
+    </table>
+    
+section
+    h1 esempi con NM /8
+    <table>
+        <thead>
+        <tr><th>IP/NM</th><th>RETE (lim. inf.)</th><th>BROADCAST (lim. sup.)</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>192.168.1.10/8</td><td>192.0.0.0</td><td>192.255.255.255</td></tr>
+        <tr><td>192.168.1.132/8</td><td>192.0.0.0</td><td>192.255.255.255</td></tr>
+        <tr><td>192.168.42.30/8</td><td>192.0.0.0</td><td>192.255.255.255</td></tr>
+        <tr><td>192.20.1.30/8</td><td>192.0.0.0</td><td>192.255.255.255</td></tr>
+        </tbody>
+    </table>
+    
+section(data-transition="convex")
+
+    div.background-opaque
+        h2 Per connettere gli apparati sulla stessa rete si usa uno switch
+
+    p ad uno switch non si assegna un indirizzo IP. 
+        u Non è un host!
+    p.fragment 
+        i se uno switch ha indirizzo IP (diventa un host) 
+        i è solo per raggiungerlo e configurarlo (management) 
+        i non per assolvere alle sue funzioni di 
+            u smistatore dei pacchetti in rete locale
 
 section(data-transition="convex")
-    h1 il GATEWAY
+
+    div.background-opaque
+        h1 ESERCITIAMOCI
+
+section
+    h1 Premessa
+    ul
+        li siamo in LAB L1
+        li su Ubuntu possiamo impostare IP/NM/GW
+        li su Windows non siamo amministratori nel LAB L1 quindi non possiamo impostare IP/NM
+        li su Windows possiamo verificare IP/NM/GW
+        li accenderete una macchina Windows e una macchina Ubuntu
+        li a fine lezione eliminare le connessioni create 
+
+section
+
+    div.background-opaque
+        h1 ES1: verificare raggiungibilità
+
+section
+    h1 ping <IP> da Windows raggiungibile
+    ul
+        ol accendere una macchina 
+        ol selezionare il sistema Windows
+        ol accedere con l'utente "utente"
+        ol eseguire il comando 
+            i cmd
+        ol digitare 
+            i ping <IP1 fornito dal prof>
+        ol digitare
+            i ipconfig
+        ol verificare IP/NM
+
+section
+    h1 ping <IP> da Windows non raggiungibile
+    ul
+        ol digitare 
+            i ping <IP2 fornito dal prof>
+        ol digitare
+            i ipconfig
+        ol verificare IP/NM
+
+section
+    h1 ping <IP> da GNU/Linux raggiungibile
+    ul
+        ol accendere un'altra macchina
+        ol selezionare il sistema Ubuntu
+        ol accedere con l'utente "utente" o "sistemi*"
+        ol eseguire l'applicazione "terminale"
+        ol digitare 
+            i ping -c3 <IP2 fornito dal prof>
+        ol digitare
+            i ifconfig (o meglio ip addr list)
+        ol verificare IP/NM della scheda di rete enp*
+
+section
+    h1 ping <IP> da GNU/Linux non raggiungibile
+    ul
+        ol digitare 
+            i ping -c3 <IP1 fornito dal prof>
+        ol digitare
+            i ifconfig (o meglio ip addr list)
+        ol verificare IP/NM della scheda di rete enp*
+
+section(data-transition="convex")
+
+    div.background-opaque
+        h1 ES2: configurazione IP per collegamento diretto
+
+section
+    h1 Ubuntu: aggiungere una connessione
+    ul
+        ol cliccare sulle "freccette" in alto a destra
+        ol cliccare su modifica connessioni..
+        ol cliccare su aggiungi connessione
+        ol mettere il nome "ITS"
+
+section
+    h1 impostare IP/NM e raggiungere altri
+    ul
+        ol andare nel tab IPv4
+        ol selezionare "assegnazione manuale"
+        ol impostare indirizzo IP e netmask (v. Windows 10.12.10.x/16)
+        ol effettuare
+            i ping 192.168.10.y
+
+section(data-transition="convex")
+
+    div.background-opaque
+        h1 ES3: verificare il funzionamento delle netmask
+
+section
+    h1 impostare IP/NM e raggiungere altri
+    ul
+        ol andare nel tab IPv4
+        ol selezionare "assegnazione manuale"
+        ol impostare indirizzo IP e netmask 192.168.10.x/24
+        ol effettuare
+            i ping 192.168.10.y
+
+
+section(data-transition="convex")
+    h1 Dalla rete dell'host a reti esterne
+
+section
+    h1 il GATEWAY 
+    h2 (abbr. GW)
     ul
         li ha la forma di un indirizzo IP
         li identifica un apparato che può instradare il pacchetto su altre reti
         li tale apparato è un router
 
-section(data-transition="convex",data-background-image="imgs/apparato-casalingo.png").fullcover
+section(data-transition="convex")
+
+    div.background-opaque
+        h2 Il compito di un router è di instradare pacchetti su più reti
+
+section(data-transition="convex",data-background-image="imgs/2-reti-connesse-da-un-router.png").fullcover
+
+section(data-transition="convex")
 
     div.background-opaque
         h2 Il vostro router di casa fa troppe cose!
 
-section(data-transition="convex",data-background-image="imgs/2-reti-connesse-da-un-router.png").fullcover
-
-    div.background-opaque
-        h2 Il compito di un router è di instradare pacchetti su più reti
+section(data-background-image="imgs/apparato-casalingo.png").fullcover
