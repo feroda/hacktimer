@@ -182,16 +182,16 @@ section
         h1 ES1: verificare raggiungibilità
 
 section
-    h1 ping <IP> da Windows raggiungibile
+    h1 ping IP da Windows raggiungibile
     ul
         ol accendere una macchina 
         ol selezionare il sistema Windows
         ol accedere con l'utente "utente"
         ol eseguire il comando 
-            i cmd
+            i cmd 
+        ol digitare  
+            i ping IP1 fornito dal prof
         ol digitare 
-            i ping <IP1 fornito dal prof>
-        ol digitare
             i ipconfig
         ol verificare IP/NM
 
@@ -199,30 +199,30 @@ section
     h1 ping <IP> da Windows non raggiungibile
     ul
         ol digitare 
-            i ping <IP2 fornito dal prof>
-        ol digitare
+            i ping IP2 fornito dal prof
+        ol digitare 
             i ipconfig
         ol verificare IP/NM
 
 section
-    h1 ping <IP> da GNU/Linux raggiungibile
+    h1 ping IP da GNU/Linux raggiungibile
     ul
         ol accendere un'altra macchina
         ol selezionare il sistema Ubuntu
         ol accedere con l'utente "utente" o "sistemi*"
         ol eseguire l'applicazione "terminale"
+        ol digitare  
+            i ping -c3 IP2 fornito dal prof
         ol digitare 
-            i ping -c3 <IP2 fornito dal prof>
-        ol digitare
             i ifconfig (o meglio ip addr list)
         ol verificare IP/NM della scheda di rete enp*
 
 section
-    h1 ping <IP> da GNU/Linux non raggiungibile
+    h1 ping IP da GNU/Linux non raggiungibile
     ul
         ol digitare 
-            i ping -c3 <IP1 fornito dal prof>
-        ol digitare
+            i ping -c3 IP1 fornito dal prof
+        ol digitare 
             i ifconfig (o meglio ip addr list)
         ol verificare IP/NM della scheda di rete enp*
 
